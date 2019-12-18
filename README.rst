@@ -20,7 +20,7 @@ YeahYeah AD Plugin
 
 
 
-Adds Active Directory interfacing to YeahYeah launch manager
+Adds Active Directory interfacing to YeahYeah launch manager <https://github.com/sjoerdk/yeahyeah>
 
 
 * Free software: MIT license
@@ -30,11 +30,22 @@ Adds Active Directory interfacing to YeahYeah launch manager
 Features
 --------
 
-AD connection fully based on umcnad library: https://github.com/DIAGNijmegen/umcnad
+AD connection fully based on umcnad_ library:
 
 * Search z-numbers
 * translate all z-numbers in running text
 * As one-off commands and reading from stdin
+
+Installation
+------------
+* Install the YeahYeah_ launch manager
+* Install this lib::
+
+    $ pip install yeahyeah_ad_plugin
+
+* Follow the steps for plugin_installation_ with plugin path to yeahyeah::
+
+    `yeahyeah_ad_plugin.core.ADPlugin`
 
 
 Credits
@@ -44,3 +55,7 @@ This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypack
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+.. _umcnad: https://github.com/DIAGNijmegen/umcnad
+.. _YeahYeah: https://github.com/sjoerdk/yeahyeah
+.. _plugin_installation: https://yeahyeah.readthedocs.io/en/latest/plugins.html#plugin-installation
