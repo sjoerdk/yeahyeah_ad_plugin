@@ -30,7 +30,12 @@ Adds Active Directory interfacing to YeahYeah launch manager
 Features
 --------
 
-* TODO
+AD connection fully based on umcnad library: https://github.com/DIAGNijmegen/umcnad
+
+* Search z-numbers
+* translate all z-numbers in running text
+* As one-off commands and reading from stdin
+
 
 Credits
 -------
