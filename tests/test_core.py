@@ -4,7 +4,7 @@ import pytest
 
 from yeahyeah.plugin_testing import MockContextCliRunner
 from yeahyeah.context import YeahYeahContext
-from yeahyeah_ad_plugin.cli import main, find_z_number, translate
+from yeahyeah_ad_plugin.cli import main, find_z_number, translate, find_name
 from yeahyeah_ad_plugin.context import ADPluginContext
 from umcnad.core import ADConnection
 
@@ -25,6 +25,7 @@ def an_ad_context():
 @pytest.fixture
 def an_ad_context_with_search(an_ad_context, person_list):
     an_ad_context.search_people = Mock(return_value=person_list)
+    an_ad_context.search_person_by_name = Mock(return_value=person_list)
 
 
 @pytest.fixture
@@ -68,6 +69,22 @@ def test_find_z_number(mock_adcontext_runner, an_ad_context_with_search, person_
         find_z_number, args="z123345 Z123456", catch_exceptions=False
     )
     assert result.exit_code == 0
+
+
+def test_find_name(mock_adcontext_runner, an_ad_context_with_search):
+    """Are the people found displayed properly?"""
+    result = mock_adcontext_runner.invoke(
+        find_name, args="jansen sjak", catch_exceptions=False
+    )
+    assert result.exit_code == 0
+
+    result = mock_adcontext_runner.invoke(find_name, args="jansen",
+                                          catch_exceptions=False)
+    assert result.exit_code == 0
+
+    result = mock_adcontext_runner.invoke(find_name, args="",
+                                          catch_exceptions=False)
+    assert result.exit_code == 2
 
 
 def test_translate(mock_adcontext_runner, an_ad_context_with_search, person_list):

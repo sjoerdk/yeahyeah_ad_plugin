@@ -16,11 +16,6 @@ class ADPluginContext:
         self.server_url = server_url
         self.bind_dn = bind_dn
 
-    def search_people(self, search_string):
-        with ADConnection(url=self.server_url, bind_dn=self.bind_dn,
-                          password=self.get_pass) as connection:
-            return connection.search_people(search_string)
-
     def search_people(self, z_numbers: List[str]):
         """
         Parameters
@@ -31,6 +26,13 @@ class ADPluginContext:
         with ADConnection(url=self.server_url, bind_dn=self.bind_dn,
                           password=self.get_pass()) as connection:
             return connection.search_z_numbers(z_numbers)
+
+    def search_person_by_name(self, last_name, first_name_or_initial=None):
+        with ADConnection(url=self.server_url, bind_dn=self.bind_dn,
+                          password=self.get_pass()) as connection:
+
+            return connection.search_by_name(
+                last_name=last_name, first_name_or_initial=first_name_or_initial)
 
     @staticmethod
     def get_pass():

@@ -52,6 +52,27 @@ def find_z_number(context: ADPluginContext, z_numbers):
         click.echo(f"{person} - {person.department}")
 
 
+@click.command()
+@handle_umcnad_exceptions
+@pass_ad_context
+@click.argument("last_name_first_name",
+                nargs=-1)
+def find_name(context: ADPluginContext, last_name_first_name):
+    """print name and info for z-number if possible"""
+    if not last_name_first_name:
+        raise click.BadParameter("last_name is required")
+    last_name = last_name_first_name[0]
+    if last_name_first_name[1:]:
+        first_name_or_initial = last_name_first_name[1:]
+    else:
+        first_name_or_initial = None
+
+    people = context.search_person_by_name(
+        last_name=last_name, first_name_or_initial=first_name_or_initial)
+    for person in people:
+        click.echo(f"{person} - {person.department}")
+
+
 def read_stdin():
     """
 
