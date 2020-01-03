@@ -58,7 +58,7 @@ def find_z_number(context: ADPluginContext, z_numbers):
 @click.argument("last_name_first_name",
                 nargs=-1)
 def find_name(context: ADPluginContext, last_name_first_name):
-    """print name and info for z-number if possible"""
+    """print z-number and info for given last name with optional initial"""
     if not last_name_first_name:
         raise click.BadParameter("last_name is required")
     last_name = last_name_first_name[0]
