@@ -127,5 +127,5 @@ def edit_settings(context: YeahYeahContext):
     click.launch(str(context.settings_path / default_settings_file_name))
 
 
-for func in [status, find_z_number, translate]:
+for func in [status, find_z_number, translate, find_name]:
     main.add_command(func)
