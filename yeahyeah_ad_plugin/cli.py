@@ -46,7 +46,7 @@ def status(context: ADPluginContext):
 def find_z_number(context: ADPluginContext, z_numbers):
     """print name and info for z-number if possible"""
     if not z_numbers:
-        raise click.badparameter("no z-numbers given")
+        raise click.BadParameter("no z-numbers given")
     people = context.search_people(list(z_numbers))
     for person in people:
         click.echo(f"{person} - {person.department}")
