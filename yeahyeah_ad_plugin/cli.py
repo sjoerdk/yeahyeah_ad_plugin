@@ -89,15 +89,24 @@ def read_stdin():
 @pass_ad_context
 @click.argument("input_string", nargs=-1)
 @click.option(
-    "--department/--no-department", default=False, help="Print department after name"
+    "--department/--no-department", default=False, help="Print department after "
+                                                        "name. Default is False"
 )
 @click.option(
-    "--email/--no-email", default=False, help="Print email after name"
+    "--email/--no-email", default=False, help="Print email after name. Default "
+                                              "is False"
 )
 @click.option(
-    "--stdin/--no-stdin", default=False, help="Read from standard in"
+    "--stdin/--no-stdin", default=False, help="Read from standard in. Default is"
+                                              " False"
 )
-def translate(context: ADPluginContext, input_string, department, email, stdin):
+@click.option(
+    "--commas/--no-commas", default=True, help="Do not use commas when translating."
+                                               "For csv files. Default is to use "
+                                               "commas"
+)
+def translate(context: ADPluginContext, input_string, department, email, stdin,
+              commas):
     """replace any z-number in input text with name"""
     if stdin:
         input_string = read_stdin()
@@ -113,6 +122,8 @@ def translate(context: ADPluginContext, input_string, department, email, stdin):
             person_string += f"({person.department})"
         if email:
             person_string += f"({person.email})"
+        if not commas:
+            person_string = person_string.replace(",", "_")
         return person_string
 
     glossary = {x.z_number: person_to_string(x) for x in people}
