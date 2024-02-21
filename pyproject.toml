@@ -6,7 +6,7 @@ authors = ["sjoerdk <sjoerd.kerkstra@radboudumc.nl>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.8"
 umcnad = {git = "ssh://git@github.com/DIAGNijmegen/umcnad.git"}
 yeahyeah = "^0.4.5"
 keyring = "^24.3.0"
