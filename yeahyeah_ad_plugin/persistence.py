@@ -19,7 +19,7 @@ class KeyRingStorage:
     def load_password(self):
         value = keyring.get_password(self.service_name, self.password_key)
         if value is None:
-            raise YeahYeahADError(
+            raise KeyringError(
                 f"Could not find key '{self.password_key}' for service " 
                 f"'{self.service_name}"
             )
@@ -28,3 +28,6 @@ class KeyRingStorage:
     def delete_password(self):
         return keyring.delete_password(self.service_name, self.password_key)
 
+
+class KeyringError(YeahYeahADError):
+    pass

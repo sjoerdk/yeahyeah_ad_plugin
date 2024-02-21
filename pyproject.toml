@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "yeahyeah_ad_plugin"
-version = "0.2.1"
+version = "0.2.2"
 description = "Adds Active Directory interfacing to YeahYeah launch manager"
 authors = ["sjoerdk <sjoerd.kerkstra@radboudumc.nl>"]
 license = "MIT"

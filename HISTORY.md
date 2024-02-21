@@ -10,3 +10,6 @@
 
 ## 0.2.1 (2024-02-21)
 * Adds keyring password saving
+
+## 0.2.2 (2024-02-21)
+* Adds keyring password use and readme

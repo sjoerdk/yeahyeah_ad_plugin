@@ -7,6 +7,8 @@ import click
 from umcnad.core import ADConnection
 from typing import List
 
+from yeahyeah_ad_plugin.persistence import KeyRingStorage, KeyringError
+
 
 class ADPluginContext:
     """Context that gets passed to each ad_plugins function
@@ -40,7 +42,12 @@ class ADPluginContext:
     def get_pass():
         """Get password for binding to AD. To be replaced with something more
         convenient later """
-        return click.prompt('password for umcn AD', hide_input=True)
+        keyring = KeyRingStorage()
+        try:
+            return keyring.load_password()
+        except KeyringError as e:
+            click.echo(f"Could not find AD password in keyring (error: {e})")
+            return click.prompt('password for umcn AD', hide_input=True)
 
     @classmethod
     def init_from_dict(cls, dict_in):
