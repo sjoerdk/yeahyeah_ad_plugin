@@ -30,9 +30,11 @@ class ADPluginContext:
     def search_person_by_name(self, last_name, first_name_or_initial=None):
         with ADConnection(url=self.server_url, bind_dn=self.bind_dn,
                           password=self.get_pass()) as connection:
-
-            return connection.search_by_name(
-                last_name=last_name, first_name_or_initial=first_name_or_initial)
+            filter_string = ""
+            if first_name_or_initial:
+                filter_string = f"first_name={first_name_or_initial} and"
+            filter_string = filter_string +  f"last_name={last_name}"
+            return connection.search_people(filter_string)
 
     @staticmethod
     def get_pass():

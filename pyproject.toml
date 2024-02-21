@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "yeahyeah_ad_plugin"
+version = "0.2.0"
+description = "Adds Active Directory interfacing to YeahYeah launch manager"
+authors = ["sjoerdk <sjoerd.kerkstra@radboudumc.nl>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+umcnad = {git = "ssh://git@github.com/DIAGNijmegen/umcnad.git"}
+yeahyeah = "^0.4.5"
+
+[tool.poetry.dev-dependencies]
+pytest = "^8.0.1"
+yeahyeah = "^0.4.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
