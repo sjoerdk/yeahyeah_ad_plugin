@@ -1,4 +1,4 @@
-from yeahyeah_ad_plugin.cli import main, edit_settings
+from yeahyeah_ad_plugin.cli import main, edit_settings, set_password
 from yeahyeah.core import YeahYeahPlugin
 
 
@@ -27,4 +27,4 @@ class ADPlugin(YeahYeahPlugin):
 
         """
 
-        return [edit_settings]
+        return [edit_settings, set_password]

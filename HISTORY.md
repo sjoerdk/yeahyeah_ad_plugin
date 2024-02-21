@@ -8,3 +8,5 @@
 * Drops rst format. Moves all docs to markup instead
 * Drops python < 3.8 Moves to python 3.10 
 
+## 0.2.1 (2024-02-21)
+* Adds keyring password saving

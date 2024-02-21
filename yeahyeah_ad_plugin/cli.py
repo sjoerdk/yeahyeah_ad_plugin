@@ -1,3 +1,4 @@
+import codecs
 import sys
 
 import click
@@ -13,6 +14,7 @@ from yeahyeah_ad_plugin.context import (
     pass_ad_context,
 )
 from yeahyeah_ad_plugin.decorators import handle_umcnad_exceptions
+from yeahyeah_ad_plugin.persistence import KeyRingStorage
 from yeahyeah_ad_plugin.translator import find_z_numbers, Translator
 
 
@@ -136,6 +138,16 @@ def translate(context: ADPluginContext, input_string, department, email, stdin,
 def edit_settings(context: YeahYeahContext):
     """open context file for editing"""
     click.launch(str(context.settings_path / default_settings_file_name))
+
+
+@click.command()
+@click.option(
+    "--password", prompt=True, hide_input=True, confirmation_prompt=False
+)
+def set_password(password):
+    """Add Active Directory password in secure keyring"""
+    keyring = KeyRingStorage()
+    keyring.save_password(password)
 
 
 for func in [status, find_z_number, translate, find_name]:
